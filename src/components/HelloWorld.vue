@@ -1,61 +1,99 @@
 <template>
-  <div class="hello">
-    <h1>{{ msg }}</h1>
-    <p>
-      For a guide and recipes on how to configure / customize this project,<br>
-      check out the
-      <a href="https://cli.vuejs.org" target="_blank" rel="noopener">vue-cli documentation</a>.
-    </p>
-    <h3>Installed CLI Plugins</h3>
-    <ul>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-babel" target="_blank" rel="noopener">babel</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-pwa" target="_blank" rel="noopener">pwa</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-router" target="_blank" rel="noopener">router</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-vuex" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">eslint</a></li>
+  <div class="container">
+    <div v-for="(header, index) in headers" :key="index" class="jumbotron">
+      <h1 class="display-4">
+        {{ header.strMeal }}
+        <span class="badge badge-success">{{ header.strArea }}</span>
+      </h1>
+      <hr class="my-4" />
+      <div class="row">
+        <div class="col-md-4 align-self-center">
+          <img
+            :src="header.strMealThumb"
+            class="img-thumbnail"
+            alt
+            srcset
+            height="200px"
+          />
+        </div>
+        <div class="col-md-8">
+          <p class="text-left">
+            {{ header.strInstructions.substring(0, 1000) }}
+          </p>
+          <div class="row">
+            <div class="col-md-auto" v-for="(n, index) in 20" :key="index">
+              <div v-if="header['strIngredient' + n] != ''">
+                <p>
+                  {{ header['strIngredient' + n] }}
+                  <span class="badge badge-primary">{{
+                    header['strMeasure' + n]
+                  }}</span>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br class="my-4" />
+      <p class="lead">
+        <router-link class="btn btn-primary" to="/about"
+          >Learn More</router-link
+        >
+      </p>
+    </div>
+    <ul v-if="posts && posts.length">
+      <li v-for="(post, index) of posts" :key="index">
+        <p>
+          <strong>{{ post.strMeal }}</strong>
+        </p>
+        <p>{{ post.body }}</p>
+      </li>
     </ul>
-    <h3>Essential Links</h3>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank" rel="noopener">Forum</a></li>
-      <li><a href="https://chat.vuejs.org" target="_blank" rel="noopener">Community Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
-      <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
-    </ul>
-    <h3>Ecosystem</h3>
-    <ul>
-      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-      <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
+
+    <ul v-if="errors && errors.length">
+      <li v-for="(error, index) of errors" :key="index">{{ error.message }}</li>
     </ul>
   </div>
 </template>
 
 <script>
+import axios from 'axios';
 export default {
   name: 'HelloWorld',
   props: {
     msg: String
+  },
+  data() {
+    return {
+      posts: null,
+      errors: [],
+      headers: null
+    };
+  },
+  created() {
+    axios
+      .get('https://www.themealdb.com/api/json/v1/1/search.php?f=a')
+      .then(response => {
+        this.posts = response.data.meals;
+      })
+      .catch(error => {
+        console.log(error);
+        this.errored = true;
+      })
+      .finally(() => (this.loading = false));
+    axios
+      .get('https://www.themealdb.com/api/json/v1/1/random.php')
+      .then(response => {
+        this.headers = response.data.meals;
+      })
+      .catch(error => {
+        console.log(error);
+        this.errored = true;
+      })
+      .finally(() => (this.loading = false));
   }
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
-</style>
+<style scoped></style>
