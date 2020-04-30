@@ -14,10 +14,10 @@
 </template>
 
 <script>
-var chunk = require('chunk');
-import axios from 'axios';
+var chunk = require("chunk");
+import axios from "axios";
 export default {
-  name: 'Category',
+  name: "Category",
   data() {
     return {
       kategori: [],
@@ -27,7 +27,7 @@ export default {
   },
   created() {
     axios
-      .get('https://www.themealdb.com/api/json/v1/1/categories.php')
+      .get("https://www.themealdb.com/api/json/v1/1/categories.php")
       .then(response => {
         this.kategori = response.data.categories;
       })
