@@ -12,6 +12,7 @@
       </div>
     </div>
     <div v-if="loading" class="loading">Loading...</div>
+    <div v-if="error" class="error">{{ error }}</div>
   </div>
 </template>
 
@@ -21,7 +22,7 @@ import axios from "axios";
 export default {
   name: "IsiCategory",
   data() {
-    return { listCategory: null, error: [], loading: [] };
+    return { listCategory: null, error: null, loading: null };
   },
   created() {
     if (this.$route.params.id) {
@@ -36,7 +37,7 @@ export default {
         })
         .catch(error => {
           console.log(error);
-          this.errored = true;
+          this.error = error.toString();
         })
         .finally(() => (this.loading = false));
     }

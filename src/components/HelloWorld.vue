@@ -12,24 +12,24 @@
         </div>
         <div class="col-md-8">
           <p class="text-left">{{ header.strInstructions.substring(0, 1000) }}</p>
-          <div class="row">
-            <div class="col-md-auto" v-for="(n, index) in 20" :key="index">
-              <div v-if="header['strIngredient' + n] != ''">
-                <p>
-                  {{ header['strIngredient' + n] }}
-                  <span class="badge badge-primary">
-                    {{
-                    header['strMeasure' + n]
-                    }}
-                  </span>
-                </p>
-              </div>
-            </div>
-          </div>
           <br class="my-4" />
           <p class="lead">
             <router-link class="btn btn-success" to="/about">Learn More</router-link>
           </p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-auto" v-for="(n, index) in 20" :key="index">
+          <div v-if="header['strIngredient' + n] != ''">
+            <p>
+              {{ header['strIngredient' + n] }}
+              <span class="badge badge-primary">
+                {{
+                header['strMeasure' + n]
+                }}
+              </span>
+            </p>
+          </div>
         </div>
       </div>
     </div>
