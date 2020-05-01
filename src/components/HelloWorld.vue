@@ -18,7 +18,7 @@
           </p>
         </div>
       </div>
-      <div class="row">
+      <div class="row mt-2">
         <div class="col-md-auto" v-for="(n, index) in 20" :key="index">
           <div v-if="header['strIngredient' + n] != ''">
             <p>
