@@ -36,7 +36,7 @@
       </div>
     </div>
     <div v-if="loading" class="loading mt-5 pt-5 text-center">Loading...</div>
-    <div v-if="error" class="error mt-5 pt-5 text-center">{{ error }}</div>
+    <div v-if="errored" class="error mt-5 pt-5 text-center">{{ errored }}</div>
   </div>
 </template>
 
@@ -50,8 +50,9 @@ export default {
   data() {
     return {
       posts: null,
-      errors: null,
-      headers: null
+      errored: null,
+      headers: null,
+      loading: true
     };
   },
   created() {
