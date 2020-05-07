@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Home from '../views/Home.vue';
+import Result from '../views/Result.vue';
 import Category from '.././components/IsiCategory.vue';
 import Detail from '.././components/Detail.vue';
 Vue.use(VueRouter);
@@ -10,6 +11,11 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home
+  },
+  {
+    path: '/result/:text',
+    name: 'Cari',
+    component: Result
   },
   {
     path: '/list-category/:id',
