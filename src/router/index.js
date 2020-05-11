@@ -2,8 +2,10 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Home from '../views/Home.vue';
 import Result from '../views/Result.vue';
+import Login from '../views/Login.vue';
 import Category from '.././components/IsiCategory.vue';
 import Detail from '.././components/Detail.vue';
+import FavoriteItem from '.././components/FavoriteItem.vue';
 Vue.use(VueRouter);
 
 const routes = [
@@ -35,6 +37,24 @@ const routes = [
     // which is lazy-loaded when the route is visited.
     component: () =>
       import(/* webpackChunkName: "about" */ '../views/About.vue')
+  },
+  {
+    path: '/Favorite',
+    name: 'Favorite',
+    component: FavoriteItem,
+    beforeEach: (to, from, next) => {
+      if (this.$store.state.isLoggedIn == false) {
+        alert('Please Login First !!');
+        next('/Login');
+      } else {
+        next();
+      }
+    }
+  },
+  {
+    path: '/Login',
+    name: 'Login',
+    component: Login
   }
 ];
 

@@ -9,13 +9,23 @@
         <hr class="my-4" />
         <div class="row">
           <div class="col-md-4 align-self-center">
-            <img :src="header.strMealThumb" class="img-thumbnail" alt srcset height="200px" />
+            <img
+              :src="header.strMealThumb"
+              class="img-thumbnail"
+              alt
+              srcset
+              height="200px"
+            />
           </div>
           <div class="col-md-8">
-            <p class="text-left">{{ header.strInstructions.substring(0, 1000) }}</p>
+            <p class="text-left">
+              {{ header.strInstructions.substring(0, 1000) }}
+            </p>
             <br class="my-4" />
             <p class="lead">
-              <router-link class="btn btn-success" to="/about">Learn More</router-link>
+              <router-link class="btn btn-success" to="/about"
+                >Learn More</router-link
+              >
             </p>
           </div>
         </div>
@@ -25,9 +35,7 @@
               <p>
                 {{ header['strIngredient' + n] }}
                 <span class="badge badge-primary">
-                  {{
-                  header['strMeasure' + n]
-                  }}
+                  {{ header['strMeasure' + n] }}
                 </span>
               </p>
             </div>
@@ -36,37 +44,38 @@
       </div>
     </div>
     <div v-if="loading" class="loading">Loading...</div>
-    <div v-if="error" class="error">{{ error }}</div>
+    <div v-if="errors" class="error">{{ errors }}</div>
   </div>
 </template>
 
 <script>
-import axios from "axios";
+import axios from 'axios';
 export default {
-  name: "HelloWorld",
+  name: 'HelloWorld',
   props: {
     msg: String
   },
   data() {
     return {
       posts: null,
-      errors: [],
-      headers: null
+      errors: '',
+      headers: null,
+      loading: ''
     };
   },
   created() {
     axios
-      .get("https://www.themealdb.com/api/json/v1/1/search.php?f=a")
+      .get('https://www.themealdb.com/api/json/v1/1/search.php?f=a')
       .then(response => {
         this.posts = response.data.meals;
       })
       .catch(error => {
         console.log(error);
-        this.errored = true;
+        this.errors = true;
       })
       .finally(() => (this.loading = false));
     axios
-      .get("https://www.themealdb.com/api/json/v1/1/random.php")
+      .get('https://www.themealdb.com/api/json/v1/1/random.php')
       .then(response => {
         this.headers = response.data.meals;
       })

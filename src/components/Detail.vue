@@ -8,6 +8,15 @@
       >
         <div class="col-md-4">
           <img :src="data.strMealThumb" :alt="data.strMeal" class="img-thumbnail" />
+          <div class="row">
+            <div class="embed-responsive embed-responsive-16by9">
+              <iframe
+                class="embed-responsive-item"
+                :src="getId(data['strYoutube'])"
+                allowfullscreen
+              ></iframe>
+            </div>
+          </div>
         </div>
         <div class="col-md-8">
           <div class="card">
@@ -20,7 +29,7 @@
             </div>
             <div class="card-body">
               <blockquote class="blockquote mb-0 text-left">
-                <pre> {{data.strInstructions}}</pre>
+                <p>{{data.strInstructions}}</p>
               </blockquote>
               <a :href="data.strYoutube">
                 Link Videos on
@@ -50,8 +59,8 @@
         </div>
       </div>
     </div>
-    <div v-if="loading" class="loading">Loading...</div>
-    <div v-if="error" class="error">{{ error }}</div>
+    <div v-if="loading" class="loading my-5 text-center">Loading...</div>
+    <div v-if="error" class="error my-5 text-center">{{ error }}</div>
   </div>
 </template>
 <script>
@@ -77,6 +86,12 @@ export default {
           this.error = error.toString();
         })
         .finally(() => (this.loading = false));
+    }
+  },
+  methods: {
+    getId(url) {
+      url = url.replace("watch?v=", "embed/");
+      return url;
     }
   }
 };
