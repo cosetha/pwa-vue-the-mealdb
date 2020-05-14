@@ -12,10 +12,9 @@
             v-model="input.username"
             placeholder="Username"
           />
-          <small
-            id="emailHelp"
-            class="form-text text-muted"
-          >We'll never share your email with anyone else.</small>
+          <small id="emailHelp" class="form-text text-muted"
+            >We'll never share your email with anyone else.</small
+          >
         </div>
         <div class="form-group">
           <label for="exampleInputPassword1">Password</label>
@@ -28,8 +27,16 @@
           />
         </div>
         <div class="card-footer">
-          <button type="button" class="btn btn-primary" v-on:click="login()">Login</button>
-          <button type="button" class="btn btn-warning mx-3" v-on:click="register">Register</button>
+          <button type="button" class="btn btn-primary" v-on:click="login()">
+            Login
+          </button>
+          <button
+            type="button"
+            class="btn btn-warning mx-3"
+            v-on:click="register"
+          >
+            Register
+          </button>
         </div>
       </form>
     </div>
@@ -38,44 +45,44 @@
 
 <script>
 export default {
-  name: "Login",
+  name: 'Login',
   data() {
     return {
       input: {
-        username: "",
-        password: ""
+        username: '',
+        password: ''
       }
     };
   },
   methods: {
     login() {
-      if (this.input.username != "" && this.input.password != "") {
+      if (this.input.username != '' && this.input.password != '') {
         if (
           this.input.username == this.$parent.mockAccount.username &&
           this.input.password == this.$parent.mockAccount.password
         ) {
-          this.$emit("authenticated", true);
-          this.$router.replace({ name: "Home" });
+          this.$emit('authenticated', true);
+          this.$router.replace({ name: 'Home' });
         } else {
-          alert("The username and / or password is incorrect");
+          alert('The username and / or password is incorrect');
         }
       } else {
-        alert("A username and password must be present");
+        alert('A username and password must be present');
       }
     },
     register() {
-      if (this.input.username != "" && this.input.password != "") {
+      if (this.input.username != '' && this.input.password != '') {
         var account = {
           username: this.input.username,
           password: this.input.password
         };
-        this.$store.commit("setAccount", account);
+        this.$store.commit('setAccount', account);
         localStorage.setItem(
-          "account",
+          'account',
           JSON.stringify(this.$store.state.mockAccount)
         );
-        this.$parent.mockAccount = JSON.parse(localStorage.getItem("account"));
-        alert("Register Success");
+        this.$parent.mockAccount = JSON.parse(localStorage.getItem('account'));
+        alert('Register Success');
       }
     }
   },

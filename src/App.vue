@@ -61,7 +61,7 @@
     </nav>
 
     <router-view
-      class="min-vh-100 mt-3 pt-3"
+      class="min-vh-100 my-5 pt-3"
       @authenticated="setAuthenticated"
     />
 

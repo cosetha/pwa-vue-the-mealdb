@@ -41,7 +41,15 @@ const routes = [
   {
     path: '/Favorite',
     name: 'Favorite',
-    component: FavoriteItem
+    component: FavoriteItem,
+    beforeEach: (to, from, next) => {
+      if (this.$store.state.isLoggedIn == false) {
+        alert('Please Login First !!');
+        next('/Login');
+      } else {
+        next();
+      }
+    }
   },
   {
     path: '/Login',
