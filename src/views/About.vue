@@ -1,15 +1,24 @@
 <template>
+<<<<<<< HEAD
   <div class="container-fluid mt-5 pt-5">
     <div class="about-section paddingTB60 gray-bg">
       <div class="container">
         <div class="row m-0 p-0">
           <div class="col-md-6 m-0 p-0">
+=======
+  <div class="container mt-5 pt-5">
+    <div class="about-section paddingTB60 gray-bg">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-7 col-sm-6">
+>>>>>>> test-unit
             <div class="about-title clearfix">
               <h1>
                 About
                 <span>Appmom</span>
               </h1>
               <h3>Lorem ipsum dolor sit amet</h3>
+<<<<<<< HEAD
               <p class="about-paddingB">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
                 aliquet dolor libero, eget venenatis mauris finibus dictum.
@@ -21,44 +30,67 @@
                 Suspendisse potenti. Nulla eros mauris, convallis et sem tempus,
                 viverra hendrerit sapien
               </p>
+=======
+              <p
+                class="about-paddingB"
+              >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec aliquet dolor libero, eget venenatis mauris finibus dictum. Vestibulum quis elit eget neque porttitor congue non sit amet dolor. Proin pretium purus a lorem ornare</p>
+              <p>sed lobortis pulvinar. Integer laoreet mi id eros porta euismod. Suspendisse potenti. Nulla eros mauris, convallis et sem tempus, viverra hendrerit sapien</p>
+>>>>>>> test-unit
               <div class="about-icons">
                 <ul>
                   <li>
                     <a href="https://www.facebook.com/">
+<<<<<<< HEAD
                       <i
                         id="social-fb"
                         class="fa fa-facebook-square fa-3x social"
                       ></i>
+=======
+                      <i id="social-fb" class="fa fa-facebook-square fa-3x social"></i>
+>>>>>>> test-unit
                     </a>
                   </li>
                   <li>
                     <a href="https://twitter.com/">
+<<<<<<< HEAD
                       <i
                         id="social-tw"
                         class="fa fa-twitter-square fa-3x social"
                       ></i>
+=======
+                      <i id="social-tw" class="fa fa-twitter-square fa-3x social"></i>
+>>>>>>> test-unit
                     </a>
                   </li>
                   <li>
                     <a href="https://plus.google.com/">
+<<<<<<< HEAD
                       <i
                         id="social-gp"
                         class="fa fa-google-plus-square fa-3x social"
                       ></i>
+=======
+                      <i id="social-gp" class="fa fa-google-plus-square fa-3x social"></i>
+>>>>>>> test-unit
                     </a>
                   </li>
                   <li>
                     <a href="mailto:bootsnipp@gmail.com">
+<<<<<<< HEAD
                       <i
                         id="social-em"
                         class="fa fa-envelope-square fa-3x social"
                       ></i>
+=======
+                      <i id="social-em" class="fa fa-envelope-square fa-3x social"></i>
+>>>>>>> test-unit
                     </a>
                   </li>
                 </ul>
               </div>
             </div>
           </div>
+<<<<<<< HEAD
           <div class="col-md-6 m-0 p-0">
             <div class="img-fluid">
               <img
@@ -66,11 +98,17 @@
                 height="100%"
                 alt
               />
+=======
+          <div class="col-md-5 col-sm-6">
+            <div class="about-img">
+              <img src="https://devitems.com/preview/appmom/img/mobile/2.png" alt />
+>>>>>>> test-unit
             </div>
           </div>
         </div>
       </div>
     </div>
+<<<<<<< HEAD
     <FavoriteItem></FavoriteItem>
   </div>
 </template>
@@ -83,6 +121,10 @@ export default {
   }
 };
 </script>
+=======
+  </div>
+</template>
+>>>>>>> test-unit
 <style scoped>
 .paddingTB60 {
   padding: 60px 0px 60px 0px;
@@ -116,6 +158,10 @@ export default {
 .about-img {
   padding-left: 57px;
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> test-unit
 /* Social Icons */
 .about-icons {
   margin: 48px 0px 48px 0px;
@@ -125,6 +171,10 @@ export default {
   padding: 0px;
   font-size: 35px;
   color: #323232;
+<<<<<<< HEAD
+=======
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+>>>>>>> test-unit
 }
 .about-icons li {
   margin: 0px;

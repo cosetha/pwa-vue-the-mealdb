@@ -59,8 +59,13 @@
         </div>
       </div>
     </div>
+<<<<<<< HEAD
     <div v-if="loading" class="loading my-5 text-center">Loading...</div>
     <div v-if="error" class="error my-5 text-center">{{ error }}</div>
+=======
+    <div v-if="loading" class="loading mt-5 pt-5 text-center">Loading...</div>
+    <div v-if="error" class="error mt-5 pt-5 text-center">{{ error }}</div>
+>>>>>>> test-unit
   </div>
 </template>
 <script>

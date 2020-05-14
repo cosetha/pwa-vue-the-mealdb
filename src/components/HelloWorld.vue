@@ -43,8 +43,13 @@
         </div>
       </div>
     </div>
+<<<<<<< HEAD
     <div v-if="loading" class="loading">Loading...</div>
     <div v-if="errors" class="error">{{ errors }}</div>
+=======
+    <div v-if="loading" class="loading mt-5 pt-5 text-center">Loading...</div>
+    <div v-if="errored" class="error mt-5 pt-5 text-center">{{ errored }}</div>
+>>>>>>> test-unit
   </div>
 </template>
 
@@ -58,9 +63,15 @@ export default {
   data() {
     return {
       posts: null,
+<<<<<<< HEAD
       errors: '',
       headers: null,
       loading: ''
+=======
+      errored: null,
+      headers: null,
+      loading: true
+>>>>>>> test-unit
     };
   },
   created() {
