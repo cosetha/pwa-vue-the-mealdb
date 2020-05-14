@@ -157,9 +157,6 @@ export default {
     if (localStorage.getItem('account')) {
       this.mockAccount = JSON.parse(localStorage.getItem('account'));
     }
-    if (!this.$store.state.isLoggedIn) {
-      this.$router.replace({ name: 'Login' }).catch(err => err);
-    }
   },
   methods: {
     setAuthenticated(status) {
