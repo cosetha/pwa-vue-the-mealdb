@@ -30,7 +30,11 @@
         </ul>
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <router-link class="nav-link" v-if="$store.state.isLoggedIn" to="/Favorite">
+            <router-link
+              class="nav-link"
+              v-if="$store.state.isLoggedIn"
+              to="/Favorite"
+            >
               <i class="fa fa-star"></i>Favorite Page
             </router-link>
           </li>
@@ -41,16 +45,25 @@
               to="/Login"
               v-on:click.native="logout()"
               replace
-            >Logout</router-link>
+              >Logout</router-link
+            >
           </li>
           <li>
-            <router-link class="nav-link" v-if="!$store.state.isLoggedIn" to="/Login">Login</router-link>
+            <router-link
+              class="nav-link"
+              v-if="!$store.state.isLoggedIn"
+              to="/Login"
+              >Login</router-link
+            >
           </li>
         </ul>
       </div>
     </nav>
 
-    <router-view class="min-vh-100 mt-3 pt-3" @authenticated="setAuthenticated" />
+    <router-view
+      class="min-vh-100 mt-3 pt-3"
+      @authenticated="setAuthenticated"
+    />
 
     <footer class="page-footer font-small bg-white pt-4 mb-0 mt-auto">
       <!-- Footer Links -->
@@ -61,7 +74,9 @@
           <div class="col-md-6 mt-md-0 mt-3">
             <!-- Content -->
             <h5 class="text-uppercase">Footer Content</h5>
-            <p>Here you can use rows and columns to organize your footer content.</p>
+            <p>
+              Here you can use rows and columns to organize your footer content.
+            </p>
           </div>
           <!-- Grid column -->
 
@@ -123,40 +138,40 @@
 </template>
 <script>
 export default {
-  name: "App",
+  name: 'App',
   data() {
     return {
       authenticated: false,
       mockAccount: {
-        username: "admin",
-        password: "admin"
+        username: 'admin',
+        password: 'admin'
       }
     };
   },
   mounted() {
-    if (localStorage.getItem("isLoggedIn")) {
+    if (localStorage.getItem('isLoggedIn')) {
       this.$store.state.isLoggedIn = JSON.parse(
-        localStorage.getItem("isLoggedIn")
+        localStorage.getItem('isLoggedIn')
       );
     }
-    if (localStorage.getItem("account")) {
-      this.mockAccount = JSON.parse(localStorage.getItem("account"));
+    if (localStorage.getItem('account')) {
+      this.mockAccount = JSON.parse(localStorage.getItem('account'));
     }
     if (!this.$store.state.isLoggedIn) {
-      this.$router.replace({ name: "Login" }).catch(err => err);
+      this.$router.replace({ name: 'Login' }).catch(err => err);
     }
   },
   methods: {
     setAuthenticated(status) {
-      this.$store.commit("setLogin", status);
+      this.$store.commit('setLogin', status);
       localStorage.setItem(
-        "isLoggedIn",
+        'isLoggedIn',
         JSON.stringify(this.$store.state.isLoggedIn)
       );
     },
     logout() {
-      localStorage.removeItem("isLoggedIn");
-      this.$store.commit("revokeLogin");
+      localStorage.removeItem('isLoggedIn');
+      this.$store.commit('revokeLogin');
     }
   }
 };
