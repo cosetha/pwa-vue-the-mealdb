@@ -11,15 +11,11 @@
         :required="required"
         v-on:input="updateValue($event.target.value)"
       />
-<<<<<<< HEAD
       <button
         class="btn btn-outline-success"
         @click="searchMethods"
         ref="searchButton"
       >
-=======
-      <button class="btn btn-outline-success" @click="searchMethods" ref="searchButton">
->>>>>>> test-unit
         <i class="fa fa-search"></i>
       </button>
     </div>
@@ -50,28 +46,16 @@ export default {
 
   methods: {
     updateValue: function(value) {
-<<<<<<< HEAD
       this.$emit('input', value);
-=======
-      this.$emit("input", value);
->>>>>>> test-unit
     },
     searchMethods() {
       if (this.value) {
         this.$router.push({
-<<<<<<< HEAD
           name: 'Cari',
-=======
-          name: "Cari",
->>>>>>> test-unit
           params: { text: this.value }
         });
       }
     }
   }
 };
-<<<<<<< HEAD
 </script>
-=======
-</script>
->>>>>>> test-unit
