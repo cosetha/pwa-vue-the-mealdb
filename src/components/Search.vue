@@ -11,7 +11,11 @@
         :required="required"
         v-on:input="updateValue($event.target.value)"
       />
-      <button class="btn btn-outline-success" @click="searchMethods" ref="searchButton">
+      <button
+        class="btn btn-outline-success"
+        @click="searchMethods"
+        ref="searchButton"
+      >
         <i class="fa fa-search"></i>
       </button>
     </div>
@@ -42,12 +46,12 @@ export default {
 
   methods: {
     updateValue: function(value) {
-      this.$emit("input", value);
+      this.$emit('input', value);
     },
     searchMethods() {
       if (this.value) {
         this.$router.push({
-          name: "Cari",
+          name: 'Cari',
           params: { text: this.value }
         });
       }

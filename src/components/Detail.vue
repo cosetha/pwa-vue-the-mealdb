@@ -1,4 +1,4 @@
-!<template>
+<template>
   <div>
     <div class="container my-2" v-if="detail">
       <div
@@ -7,20 +7,33 @@
         :key="index"
       >
         <div class="col-md-4">
-          <img :src="data.strMealThumb" :alt="data.strMeal" class="img-thumbnail" />
+          <img
+            :src="data.strMealThumb"
+            :alt="data.strMeal"
+            class="img-thumbnail"
+          />
+          <div class="row">
+            <div class="embed-responsive embed-responsive-16by9">
+              <iframe
+                class="embed-responsive-item"
+                :src="getId(data['strYoutube'])"
+                allowfullscreen
+              ></iframe>
+            </div>
+          </div>
         </div>
         <div class="col-md-8">
           <div class="card">
             <div class="card-header">
               <h4>
-                {{data.strMeal}}
-                <span class="badge badge-success">{{data.strArea}}</span>
-                <span class="badge badge-warning">{{data.strCategory}}</span>
+                {{ data.strMeal }}
+                <span class="badge badge-success">{{ data.strArea }}</span>
+                <span class="badge badge-warning">{{ data.strCategory }}</span>
               </h4>
             </div>
             <div class="card-body">
               <blockquote class="blockquote mb-0 text-left">
-                <pre> {{data.strInstructions}}</pre>
+                <p>{{ data.strInstructions }}</p>
               </blockquote>
               <a :href="data.strYoutube">
                 Link Videos on
@@ -38,9 +51,7 @@
                   <h6>
                     {{ data['strIngredient' + n] }}
                     <span class="badge badge-primary">
-                      {{
-                      data['strMeasure' + n]
-                      }}
+                      {{ data['strMeasure' + n] }}
                     </span>
                   </h6>
                 </div>
@@ -55,16 +66,16 @@
   </div>
 </template>
 <script>
-import axios from "axios";
+import axios from 'axios';
 export default {
-  name: "Detail",
+  name: 'Detail',
   data() {
     return { detail: [], error: null, loading: [] };
   },
   created() {
     if (this.$route.params.id) {
       axios
-        .get("https://www.themealdb.com/api/json/v1/1/lookup.php", {
+        .get('https://www.themealdb.com/api/json/v1/1/lookup.php', {
           params: {
             i: this.$route.params.id
           }
@@ -78,9 +89,14 @@ export default {
         })
         .finally(() => (this.loading = false));
     }
+  },
+  methods: {
+    getId(url) {
+      url = url.replace('watch?v=', 'embed/');
+      return url;
+    }
   }
 };
 </script>
 
-<style>
-</style>
+<style></style>

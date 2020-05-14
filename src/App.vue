@@ -28,9 +28,30 @@
             <a class="nav-link" href="#">Disabled</a>
           </li>
         </ul>
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <router-link class="nav-link" v-if="$store.state.isLoggedIn" to="/Favorite">
+              <i class="fa fa-star"></i>Favorite Page
+            </router-link>
+          </li>
+          <li class="nav-item">
+            <router-link
+              class="nav-link"
+              v-if="$store.state.isLoggedIn"
+              to="/Login"
+              v-on:click.native="logout()"
+              replace
+            >Logout</router-link>
+          </li>
+          <li>
+            <router-link class="nav-link" v-if="!$store.state.isLoggedIn" to="/Login">Login</router-link>
+          </li>
+        </ul>
       </div>
     </nav>
-    <router-view class="min-vh-100 mt-3 pt-3" />
+
+    <router-view class="min-vh-100 mt-3 pt-3" @authenticated="setAuthenticated" />
+
     <footer class="page-footer font-small bg-white pt-4 mb-0 mt-auto">
       <!-- Footer Links -->
       <div class="container-fluid text-center text-md-left">
@@ -100,7 +121,46 @@
     </footer>
   </div>
 </template>
-
+<script>
+export default {
+  name: "App",
+  data() {
+    return {
+      authenticated: false,
+      mockAccount: {
+        username: "admin",
+        password: "admin"
+      }
+    };
+  },
+  mounted() {
+    if (localStorage.getItem("isLoggedIn")) {
+      this.$store.state.isLoggedIn = JSON.parse(
+        localStorage.getItem("isLoggedIn")
+      );
+    }
+    if (localStorage.getItem("account")) {
+      this.mockAccount = JSON.parse(localStorage.getItem("account"));
+    }
+    if (!this.$store.state.isLoggedIn) {
+      this.$router.replace({ name: "Login" }).catch(err => err);
+    }
+  },
+  methods: {
+    setAuthenticated(status) {
+      this.$store.commit("setLogin", status);
+      localStorage.setItem(
+        "isLoggedIn",
+        JSON.stringify(this.$store.state.isLoggedIn)
+      );
+    },
+    logout() {
+      localStorage.removeItem("isLoggedIn");
+      this.$store.commit("revokeLogin");
+    }
+  }
+};
+</script>
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;

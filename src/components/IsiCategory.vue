@@ -1,4 +1,4 @@
-!<template>
+<template>
   <div class="Category">
     <div class="container my-2" v-if="listCategory">
       <div class="row mt-4" v-for="(data, index) in kategoriRow" :key="index">
@@ -8,6 +8,14 @@
             <hr />
             <p>{{ datas.strMeal }}</p>
           </router-link>
+          <Button
+            class="btn btn-outline-secondary"
+            :id="'button_'+datas.idMeal"
+            @click="favorite($event)"
+          >
+            <i class="fa fa-star" style="color:orange;"></i>
+            Favorite
+          </Button>
         </div>
       </div>
     </div>
@@ -22,7 +30,13 @@ import axios from "axios";
 export default {
   name: "IsiCategory",
   data() {
-    return { listCategory: null, error: null, loading: null };
+    return {
+      listCategory: [],
+      error: null,
+      loading: null,
+      listFavorite: [],
+      fav: null
+    };
   },
   created() {
     if (this.$route.params.id) {
@@ -45,6 +59,38 @@ export default {
   computed: {
     kategoriRow() {
       return chunk(this.listCategory, 4);
+    }
+  },
+  methods: {
+    favorite(event) {
+      var targetId = event.currentTarget.id;
+      var rs = targetId.split("_");
+      console.log(rs);
+      if (rs[1]) {
+        axios
+          .get("https://www.themealdb.com/api/json/v1/1/lookup.php", {
+            params: {
+              i: rs[1]
+            }
+          })
+          .then(response => {
+            this.fav = response.data.meals;
+            console.log(this.fav);
+          })
+          .catch(error => {
+            console.log(error);
+            this.error = error.toString();
+          })
+          .finally(() => {
+            this.listFavorite.push(this.fav[0]);
+            this.$store.commit("setFavorite", this.listFavorite);
+            localStorage.setItem(
+              "favoriteItem",
+              JSON.stringify(this.$store.state.favoritePage)
+            );
+            console.log(JSON.parse(localStorage.getItem("favoriteItem")));
+          });
+      }
     }
   }
 };

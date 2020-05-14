@@ -24,17 +24,17 @@
   </div>
 </template>
 <script>
-var chunk = require("chunk");
-import axios from "axios";
+var chunk = require('chunk');
+import axios from 'axios';
 export default {
-  name: "Result",
+  name: 'Result',
   data() {
     return { result: [], error: null, loading: [] };
   },
   created() {
     if (this.$route.params.text) {
       axios
-        .get("https://www.themealdb.com/api/json/v1/1/search.php", {
+        .get('https://www.themealdb.com/api/json/v1/1/search.php', {
           params: {
             s: this.$route.params.text
           }
@@ -57,5 +57,4 @@ export default {
 };
 </script>
 
-<style>
-</style>
+<style></style>
