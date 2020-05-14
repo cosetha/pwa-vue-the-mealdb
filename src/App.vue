@@ -50,7 +50,7 @@
       </div>
     </nav>
 
-    <router-view class="min-vh-100 mt-3 pt-3" @authenticated="setAuthenticated" />
+    <router-view class="min-vh-100 my-5 pt-3" @authenticated="setAuthenticated" />
 
     <footer class="page-footer font-small bg-white pt-4 mb-0 mt-auto">
       <!-- Footer Links -->
@@ -142,9 +142,6 @@ export default {
     if (localStorage.getItem("account")) {
       this.mockAccount = JSON.parse(localStorage.getItem("account"));
     }
-    if (!this.$store.state.isLoggedIn) {
-      this.$router.replace({ name: "Login" }).catch(err => err);
-    }
   },
   methods: {
     setAuthenticated(status) {
@@ -163,8 +160,11 @@ export default {
 </script>
 <style>
 #app {
-  background: #e0e0e0;
-  background: linear-gradient(to right, #e8e8e8, #f5f5f5);
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
 }
 
 #nav {
