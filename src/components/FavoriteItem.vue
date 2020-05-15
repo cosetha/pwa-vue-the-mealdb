@@ -3,7 +3,7 @@
     <div class="container my-5" v-if="listFavorite">
       <div class="row mt-4" v-for="(data, index) in favoriteRow" :key="index">
         <div class="col-md-3" v-for="(datas, index) in data" :key="index">
-          <router-link :to="{ name: 'Detail', params: { id: datas.idMeal } }">
+          <router-link :to="{ name: 'DetailFav', params: { id: datas.idMeal } }">
             <img :src="datas.strMealThumb" class="img-thumbnail" />
             <hr />
             <p>{{ datas.strMeal }}</p>

@@ -4,6 +4,7 @@ import Home from '../views/Home.vue';
 import Result from '../views/Result.vue';
 import Category from '.././components/IsiCategory.vue';
 import Detail from '.././components/Detail.vue';
+import DetailFavorite from '../components/DetailFavorite.vue';
 import FavoriteItem from '.././components/FavoriteItem.vue';
 import Login from '../views/Login.vue';
 Vue.use(VueRouter);
@@ -28,6 +29,11 @@ const routes = [
     path: '/detail/:id',
     name: 'Detail',
     component: Detail
+  },
+  {
+    path: '/detailFav/:id',
+    name: 'DetailFav',
+    component: DetailFavorite
   },
   {
     path: '/about',

@@ -55,6 +55,9 @@ export default {
         })
         .finally(() => (this.loading = false));
     }
+    if (localStorage.getItem("favoriteItem")) {
+      this.listFavorite = JSON.parse(localStorage.getItem("favoriteItem"));
+    }
   },
   computed: {
     kategoriRow() {
@@ -65,7 +68,6 @@ export default {
     favorite(event) {
       var targetId = event.currentTarget.id;
       var rs = targetId.split("_");
-      console.log(rs);
       if (rs[1]) {
         axios
           .get("https://www.themealdb.com/api/json/v1/1/lookup.php", {
@@ -75,22 +77,40 @@ export default {
           })
           .then(response => {
             this.fav = response.data.meals;
-            console.log(this.fav);
           })
           .catch(error => {
-            console.log(error);
             this.error = error.toString();
           })
           .finally(() => {
-            this.listFavorite.push(this.fav[0]);
-            this.$store.commit("setFavorite", this.listFavorite);
-            localStorage.setItem(
-              "favoriteItem",
-              JSON.stringify(this.$store.state.favoritePage)
-            );
-            console.log(JSON.parse(localStorage.getItem("favoriteItem")));
+            console.log(this.fav[0].idMeal);
+            var api = this.methods(this.fav);
+            console.log(api);
+            if (api) {
+              this.listFavorite.push(this.fav[0]);
+              this.$store.commit("setFavorite", this.listFavorite);
+              localStorage.setItem(
+                "favoriteItem",
+                JSON.stringify(this.$store.state.favoritePage)
+              );
+              console.log(JSON.parse(localStorage.getItem("favoriteItem")));
+              alert("Added to Favorite");
+            } else {
+              alert("Already at Favorite");
+            }
           });
       }
+    },
+    methods(params) {
+      var result = this.listFavorite;
+      var hasil = true;
+      for (var a in result) {
+        if (result[a].idMeal != params[0].idMeal) {
+          hasil = true;
+        } else {
+          hasil = false;
+        }
+      }
+      return hasil;
     }
   }
 };
