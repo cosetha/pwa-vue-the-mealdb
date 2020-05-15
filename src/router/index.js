@@ -7,6 +7,7 @@ import Detail from '.././components/Detail.vue';
 import DetailFavorite from '../components/DetailFavorite.vue';
 import FavoriteItem from '.././components/FavoriteItem.vue';
 import Login from '../views/Login.vue';
+import store from '../store/index.js';
 Vue.use(VueRouter);
 
 const routes = [
@@ -48,8 +49,8 @@ const routes = [
     path: '/Favorite',
     name: 'Favorite',
     component: FavoriteItem,
-    beforeEach: (to, from, next) => {
-      if (this.$store.state.isLoggedIn == false) {
+    beforeEnter: (to, from, next) => {
+      if (!store.state.isLoggedIn) {
         alert('Please Login First !!');
         next('/Login');
       } else {

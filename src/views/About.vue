@@ -25,34 +25,22 @@
                 <ul>
                   <li>
                     <a href="https://www.facebook.com/">
-                      <i
-                        id="social-fb"
-                        class="fa fa-facebook-square fa-3x social"
-                      ></i>
+                      <i id="social-fb" class="fa fa-facebook-square fa-3x social"></i>
                     </a>
                   </li>
                   <li>
                     <a href="https://twitter.com/">
-                      <i
-                        id="social-tw"
-                        class="fa fa-twitter-square fa-3x social"
-                      ></i>
+                      <i id="social-tw" class="fa fa-twitter-square fa-3x social"></i>
                     </a>
                   </li>
                   <li>
                     <a href="https://plus.google.com/">
-                      <i
-                        id="social-gp"
-                        class="fa fa-google-plus-square fa-3x social"
-                      ></i>
+                      <i id="social-gp" class="fa fa-google-plus-square fa-3x social"></i>
                     </a>
                   </li>
                   <li>
                     <a href="mailto:bootsnipp@gmail.com">
-                      <i
-                        id="social-em"
-                        class="fa fa-envelope-square fa-3x social"
-                      ></i>
+                      <i id="social-em" class="fa fa-envelope-square fa-3x social"></i>
                     </a>
                   </li>
                 </ul>
@@ -62,7 +50,8 @@
           <div class="col-md-5 col-sm-6">
             <div class="about-img">
               <img
-                src="https://devitems.com/preview/appmom/img/mobile/2.png"
+                src="https://cnet3.cbsistatic.com/img/W2NYKYjq8FlLAdHK2CadQYWNdcI=/1200x675/2019/10/09/273b92a4-527f-44ac-82cb-7ee8ed572db7/11-ipad-2019-10-2.jpg"
+                width="500px"
                 alt
               />
             </div>
